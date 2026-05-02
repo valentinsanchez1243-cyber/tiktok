@@ -390,7 +390,7 @@ function render(){
     h+=`<div class="acard">
       <div class="albl">DESCRIPCION — ${atab.toUpperCase()} — pegar en todos sus posts</div>
       <div class="atxt">${desc.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>
-      <button class="copybig" id="${did}" onclick="cp(${JSON.stringify(desc)},'${did}')">COPIAR DESCRIPCION COMPLETA</button>
+      <button class="copybig" id="${did}" onclick='cp(${JSON.stringify(desc).replace(/\'/g, "&#39;")}, "${did}")'>COPIAR DESCRIPCION COMPLETA</button>
     </div>
     <div class="acts">
       <button class="abtn" onclick="mall('${atab.replace(/'/g,"\\'")}',false)">Desmarcar todos</button>
@@ -423,7 +423,7 @@ function render(){
             <div class="crow-tag ${col}">SLIDE ${i+1}</div>
             <div class="crow-txt">${s.replace(/</g,'&lt;')}</div>
           </div>
-          <button class="cpbtn" id="${iSlide}" onclick="cp(${JSON.stringify(s)},'${iSlide}')">
+          <button class="cpbtn" id="${iSlide}" onclick='cp(${JSON.stringify(s).replace(/\'/g, "&#39;")}, "${iSlide}")'>
             <span class="ico">📋</span>COPIAR
           </button>
         </div>`;
@@ -445,7 +445,7 @@ function render(){
               <div class="crow-tag red">TITULO PORTADA + TITULO POST TIKTOK</div>
               <div class="crow-txt">${p.ti.replace(/</g,'&lt;')}</div>
             </div>
-            <button class="cpbtn" id="${iPort}" onclick="cp(${JSON.stringify(p.ti)},'${iPort}')">
+            <button class="cpbtn" id="${iPort}" onclick='cp(${JSON.stringify(p.ti).replace(/\'/g, "&#39;")}, "${iPort}")'>
               <span class="ico">🖼</span>COPIAR
             </button>
           </div>
@@ -465,7 +465,7 @@ function render(){
               <div class="crow-tag green">DESCRIPCION DEL POST</div>
               <div class="crow-txt muted">${desc.substring(0,70).replace(/</g,'&lt;')}…</div>
             </div>
-            <button class="cpbtn" id="${iDesc}" onclick="cp(${JSON.stringify(desc)},'${iDesc}')">
+            <button class="cpbtn" id="${iDesc}" onclick='cp(${JSON.stringify(desc).replace(/\'/g, "&#39;")}, "${iDesc}")'>
               <span class="ico">📝</span>COPIAR
             </button>
           </div>
