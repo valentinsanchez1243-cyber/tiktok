@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TikTok Mayo 2025</title>
+<style>
+:root{--bg:#0a0a0a;--s:#161616;--c:#1c1c1c;--b:#282828;--r:#fe2c55;--t:#25f4ee;--w:#fff;--g2:#aaa;--g3:#555;--gr:#1db954;--gbg:#0a2218;--rad:14px;--rsm:9px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;font-size:15px;min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--s);padding:12px 16px 10px;border-bottom:1px solid var(--b);position:sticky;top:0;z-index:100}
+.htop{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.htit{font-size:17px;font-weight:800;letter-spacing:-.4px}
+.htit span{color:var(--r)}
+.hst{font-size:12px;color:var(--g2)}
+.hst strong{color:var(--w)}
+.gb{height:3px;background:var(--b);border-radius:99px;overflow:hidden}
+.gbf{height:100%;background:linear-gradient(90deg,var(--r),var(--t));border-radius:99px;transition:width .4s}
+
+/* TABS */
+.tw{background:var(--s);border-bottom:1px solid var(--b);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tw::-webkit-scrollbar{display:none}
+.tabs{display:flex;padding:0 10px;gap:1px;white-space:nowrap}
+.tab{padding:9px 11px;font-size:12px;font-weight:700;color:var(--g3);border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;white-space:nowrap}
+.tab.active{color:var(--r);border-bottom-color:var(--r)}
+.tc{font-size:10px;background:var(--b);border-radius:99px;padding:1px 5px;margin-left:2px;color:var(--g3)}
+.tab.active .tc{background:#3a0010;color:var(--r)}
+.tc.done{background:var(--gbg);color:var(--gr)}
+
+/* BODY */
+.body{padding:10px 12px;max-width:600px;margin:0 auto}
+
+/* ARTIST DESC CARD */
+.acard{background:var(--c);border:1px solid var(--b);border-radius:var(--rad);padding:14px;margin-bottom:10px;border-left:3px solid var(--r)}
+.albl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--r);margin-bottom:6px}
+.atxt{font-size:13px;color:var(--g2);line-height:1.6;margin-bottom:10px}
+.copybig{width:100%;padding:14px;background:var(--r);color:#fff;border:none;border-radius:var(--rsm);font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:opacity .15s}
+.copybig:active{opacity:.7}
+.copybig.ok{background:var(--gr)!important}
+
+/* ACTIONS */
+.acts{display:flex;gap:8px;margin-bottom:10px}
+.abtn{flex:1;padding:10px 6px;border-radius:var(--rsm);border:1px solid var(--b);background:var(--c);color:var(--g2);font-size:12px;font-weight:700;cursor:pointer}
+.abtn.green{background:var(--gbg);color:var(--gr);border-color:var(--gr)}
+
+/* PROGRESS */
+.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.plbl{font-size:11px;color:var(--g3);white-space:nowrap;min-width:70px}
+.pbw{flex:1;height:3px;background:var(--b);border-radius:99px;overflow:hidden}
+.pbf{height:100%;background:var(--r);border-radius:99px;transition:width .3s}
+
+/* WEEK */
+.wlbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--g3);margin:12px 0 6px}
+
+/* POST CARD */
+.pc{background:var(--c);border:1px solid var(--b);border-radius:var(--rad);margin-bottom:10px;overflow:hidden}
+.pc.done{opacity:.35}
+.phead{display:flex;align-items:center;gap:10px;padding:11px 13px 9px;cursor:pointer}
+.pchk{width:22px;height:22px;border-radius:6px;border:2px solid var(--b);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.pc.done .pchk{background:var(--gr);border-color:var(--gr)}
+.cksvg{display:none}
+.pc.done .cksvg{display:block}
+.pinfo{flex:1;min-width:0}
+.pmeta{font-size:11px;color:var(--g3);margin-bottom:3px}
+.pmeta .art{color:var(--t);font-weight:700}
+.ptit{font-size:13px;font-weight:700;color:var(--w);line-height:1.35}
+.pc.done .ptit{text-decoration:line-through;color:var(--g3)}
+
+/* COPY SECTIONS */
+.csecs{border-top:1px solid var(--b)}
+
+/* SECTION HEADER — collapsible */
+.csec-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;cursor:pointer;background:none;width:100%;border:none;text-align:left;border-bottom:1px solid var(--b)}
+.csec-hdr:last-child{border-bottom:none}
+.csec-hdr .slbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--g3)}
+.csec-hdr .sarr{font-size:12px;color:var(--g3);transition:transform .2s}
+.csec-hdr.open .sarr{transform:rotate(180deg)}
+
+/* COPY ROW */
+.crow-wrap{display:none;border-bottom:1px solid var(--b)}
+.crow-wrap.open{display:block}
+.crow-wrap:last-child{border-bottom:none}
+.crow{display:flex;align-items:stretch;border-bottom:1px solid var(--b)}
+.crow:last-child{border-bottom:none}
+.crow-content{flex:1;padding:10px 13px;min-width:0}
+.crow-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.crow-tag.red{color:var(--r)}
+.crow-tag.teal{color:var(--t)}
+.crow-tag.green{color:var(--gr)}
+.crow-tag.amber{color:#f59e0b}
+.crow-txt{font-size:13px;color:var(--w);line-height:1.4;word-break:break-word}
+.crow-txt.muted{font-size:12px;color:var(--g2)}
+.cpbtn{flex-shrink:0;width:72px;background:none;border:none;border-left:1px solid var(--b);color:var(--g2);font-size:11px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px}
+.cpbtn:active{background:var(--b)}
+.cpbtn.ok{color:var(--gr)!important}
+.cpbtn .ico{font-size:18px;line-height:1}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="htop">
+    <div class="htit">Tik<span>Tok</span> Mayo 2025</div>
+    <div class="hst"><strong id="gd">0</strong>/90 programados</div>
+  </div>
+  <div class="gb"><div class="gbf" id="gbar" style="width:0%"></div></div>
+</div>
+
+<div class="tw"><div class="tabs" id="tabs"></div></div>
+<div class="body" id="body"></div>
+
+<script>
+const DESC={
+"Callejeros":`Callejeros (1995 - 2010) fue una banda formada en la localidad de Villa Celina, provincia de Buenos Aires, y se convirtió en uno de los máximos referentes del "rock barrial" en Argentina. Liderada por Patricio "Pato" Fontanet en voz, su formación principal incluyó a Christian Torrejón en bajo, Elio Delgado y Maximiliano Djerfy en guitarras, Eduardo Vázquez en batería y Juan Alberto Carbone en saxofón. Tras llamarse inicialmente "Río Verde", adoptaron de manera definitiva el nombre Callejeros en 1997.
+Su discografía oficial de estudio está compuesta por cinco álbumes. Debutaron de forma independiente con "Sed" en 2001. El salto a la popularidad a nivel nacional llegó con su segundo disco, "Presión", en 2003, y alcanzaron su pico de masividad con "Rocanroles sin destino", publicado en 2004. Tras una etapa de inactividad, retomaron su producción discográfica con "Señales" en 2006 y editaron su último material de estudio, "Disco Escultura", en el año 2008.
+La historia del grupo quedó ineludiblemente marcada por la tragedia del boliche República Cromañón el 30 de diciembre de 2004 durante uno de sus recitales, un incendio que dejó 194 víctimas fatales y derivó en un largo y complejo proceso judicial para todos los integrantes. Tras volver a presentarse en vivo en los años posteriores, Callejeros anunció su disolución oficial a fines de 2010 debido a las tensiones internas y a las condenas judiciales, lo que llevó a Fontanet a formar un nuevo proyecto musical llamado Casi Justicia Social (actualmente Don Osvaldo). #rocknacional #rocknacionalargentino #rock #callejeros #patofontanet #donosvaldo`,
+"Intoxicados":`Intoxicados (2000 - 2009) fue una banda formada en Buenos Aires tras la primera separación de Viejas Locas. Liderada por Cristian "Pity" Álvarez en voz y guitarra, la formación base se completó con Jorge Rossi en bajo, Felipe Barrozo en guitarra y Abel Meyer en batería, incorporando también a músicos estables como Adrián "Burbujas" Pérez en teclados. A diferencia del estilo de rock and roll tradicional de su proyecto anterior, la banda se caracterizó por una fuerte experimentación musical, fusionando su sonido con géneros como el hip hop, reggae, funk, punk y música electrónica.
+Su discografía oficial de estudio consta de cuatro álbumes. Debutaron discográficamente con "¡¡Buen Día!!" en 2001. A este le siguió "No es sólo rock and roll" en 2003, el cual marcó profundamente su apertura musical. El éxito masivo y la consagración definitiva a nivel nacional llegaron con "Otro día en el planeta Tierra", publicado en 2005. Su último trabajo de estudio fue el disco conceptual "El exilio de las especies (Thend)", lanzado en el año 2008.
+El grupo comenzó a disolverse a principios de 2009 tras el desgaste interno y la salida de varios de sus integrantes históricos (Barrozo y Rossi). La banda brindó su último concierto oficial el 20 de febrero de 2009 en el festival Cosquín Rock, en la provincia de Córdoba, tocando ya sin su formación original completa. Poco tiempo después de esta presentación, Pity Álvarez dio por terminada la etapa de Intoxicados para anunciar formalmente el regreso de Viejas Locas. #rocknacional #rocknacionalargentino #rock #viejaslocas #intoxicados #pityalvarez`,
+"La Renga":`La Renga es una banda formada en 1988 en el barrio de Mataderos, ciudad de Buenos Aires. Consolidada como una de las agrupaciones más convocantes del hard rock en Argentina, se ha caracterizado históricamente por su independencia discográfica y la autogestión de sus multitudinarios recitales, conocidos popularmente como "banquetes". Su formación clásica y estable está compuesta por Gustavo "Chizzo" Nápoli en voz y guitarra, Gabriel "Tete" Iglesias en bajo, Jorge "Tanque" Iglesias en batería y Manuel "Manu" Varela en saxofón y armónica.
+Su discografía oficial de estudio incluye diez álbumes. Debutaron de manera independiente con "Esquivando charcos" en 1991 y "A donde me lleva la vida..." en 1993. Alcanzaron la masividad definitiva con "Despedazado por mil partes" en 1996, seguido por su álbum homónimo "La Renga" (también conocido como el disco de la estrella) en 1998 y "La esquina del infinito" en el año 2000. Posteriormente lanzaron "Detonador de sueños" en 2003 y el disco doble "Truenotierra" en 2006. Su producción discográfica en estudio continuó con "Algún rayo" en 2010, "Pesados vestigios" en 2014 y "Alejado de la red", editado en 2022.
+A diferencia de otras bandas icónicas de su generación, La Renga nunca se separó y se mantiene en plena actividad. Su vigencia a lo largo de las décadas los ha llevado a agotar entradas en los estadios y autódromos más grandes del país manteniéndose siempre al margen de las grandes productoras y conservando la fidelidad de su público, autodenominado "Los mismos de siempre". #rocknacional #rocknacionalargentino #rock #larenga #chizonappoli`,
+"Los Piojos":`Los Piojos (1988 - 2009) fue una banda formada en Ciudad Jardín Lomas del Palomar, provincia de Buenos Aires, y se consolidó como uno de los pilares fundamentales del movimiento conocido como "rock rolinga" o "rock barrial" en Argentina. Liderada por Andrés Ciro Martínez en voz y armónica, la formación clásica que alcanzó la masividad incluía a Daniel "Piti" Fernández y Gustavo "Tavo" Kupinski en guitarras, Miguel Ángel "Micky" Rodríguez en bajo, y Daniel Buira en batería, quien luego fue reemplazado por Sebastián Cardero. Una de sus características distintivas fue la incorporación del candombe y la murga rioplatense a su base de rock y blues, apoyados también por percusionistas invitados y la iconografía del "piojito".
+Su discografía oficial de estudio consta de siete álbumes. Debutaron de manera independiente con "Chactuchac" en 1992. El éxito masivo y la rotación en radios y televisión llegaron con su segundo disco, "Ay ay ay" en 1994, y se consagraron definitivamente a nivel nacional con "3er arco" en 1996. A este le siguieron "Azul" en 1998 y "Verde paisaje del infierno" en 2000. Durante la década de los 2000 editaron "Máquina de sangre" en 2003 y su último material de estudio, "Civilización", publicado en 2007. A lo largo de su carrera también editaron dos discos en vivo oficiales: "Ritual" en 1999 y "Huracanes en luna plateada" en 2002.
+La banda anunció su separación mediante un comunicado oficial en 2009, argumentando desgaste y la necesidad de tomar caminos separados tras la salida del guitarrista fundador "Piti" Fernández el año anterior. Su último recital, concebido inicialmente en el Club Ciudad de Buenos Aires y trasladado por la masiva demanda, se llevó a cabo el 30 de mayo de 2009 en el Estadio Monumental de River Plate frente a más de 65.000 personas. #rocknacional #rocknacionalargentino #rock #lospiojos #ciro #ciroandresmartinez #ciroylospersas`,
+"Patricio Rey":`Patricio Rey y sus Redonditos de Ricota (1976 - 2001) fue una banda formada en La Plata, pionera y referente de la autogestión en el rock argentino, manteniéndose siempre como un grupo independiente sin firmar con grandes discográficas. Liderada por Carlos "Indio" Solari en voz y Eduardo "Skay" Beilinson en guitarra, contó históricamente con Carmen Castro "La Negra Poly" como mánager y Ricardo Cohen "Rocambole" a cargo de todo el arte visual.
+Su discografía oficial de estudio está compuesta por diez trabajos. Debutaron con "Gulp!" en 1985, seguido por "Oktubre" en 1986 y "Un baión para el ojo idiota" en 1988. Cerraron la década con "¡Bang! ¡Bang!... Estás liquidado" en 1989. Durante los años noventa lanzaron "La mosca y la sopa" en 1991, los discos "Lobo suelto" y "Cordero atado", editados como dos obras separadas en 1993, "Luzbelito" en 1996 y "Último bondi a Finisterre" en 1998. Su último trabajo de estudio fue "Momo Sampler", publicado en el año 2000.
+El grupo brindó su último recital el 4 de agosto de 2001 frente a más de 40.000 personas en el Estadio Chateau Carreras de Córdoba. Tras varias especulaciones, anunciaron su separación definitiva en noviembre de ese mismo año. #rocknacional #rocknacionalargentino #rock #patriciorey #pr #indiosolari`,
+"Soda Stereo":`Soda Stereo (1982 - 1997 / 2007) fue una banda formada en la ciudad de Buenos Aires y es considerada uno de los grupos más importantes e influyentes en la historia del rock en español, siendo pionera en la masificación del género en toda Latinoamérica. Liderada por Gustavo Cerati en voz y guitarra, Zeta Bosio en bajo y Charly Alberti en batería, la banda transitó por diversos estilos a lo largo de su carrera, desde el post-punk y la new wave en sus inicios, hasta el rock alternativo y la experimentación sónica.
+Su discografía oficial de estudio está compuesta por siete álbumes. Debutaron con su disco homónimo "Soda Stereo" en 1984. Al año siguiente lanzaron "Nada personal" en 1985, seguido por "Signos" en 1986, trabajos que impulsaron fuertemente su expansión internacional. Cerraron la década con "Doble vida" en 1988. Durante los años noventa editaron su obra más masiva, "Canción animal", en 1990, seguida por la experimentación de "Dynamo" en 1992. Su último material de estudio fue "Sueño Stereo", publicado en el año 1995.
+La banda anunció su separación oficial el 1 de mayo de 1997 mediante un comunicado de prensa, motivada por el desgaste y diferencias personales. Se despidieron con una breve gira que culminó el 20 de septiembre de 1997 en el Estadio Monumental de River Plate, show inmortalizado por la célebre frase "Gracias totales" de Cerati. Diez años después, en 2007, el trío se reunió para la exitosa y multitudinaria gira continental "Me verás volver", la cual marcó la última vez que los tres miembros originales tocaron juntos sobre un escenario. #rocknacional #rocknacionalargentino #rock #sodastereo #gustavocerati`,
+"Sumo":`Sumo (1981 - 1987) fue una banda formada en Hurlingham, provincia de Buenos Aires, fundamental en la introducción del post-punk, el reggae y el ska en la escena del rock argentino. Fue liderada por el cantante ítalo-escocés Luca Prodan, quien llegó a la Argentina buscando escapar de su adicción a la heroína en Europa. A lo largo de su etapa más emblemática, la formación incluyó a Germán Daffunchio y Ricardo Mollo en guitarras, Diego Arnedo en bajo, Alberto "Superman" Troglio en batería y Roberto Pettinato en saxofón, contando también con Alejandro Sokol en sus primeros años. Una de sus particularidades fue interpretar gran parte de su repertorio en idioma inglés.
+Su discografía comenzó con la grabación independiente en casete de "Corpiños en la madrugada" en 1983, el cual se distribuía de forma no oficial en sus shows. Tras firmar con la discográfica CBS, editaron su primer álbum de estudio oficial, "Divididos por la felicidad", en 1985. Al año siguiente lanzaron "Llegando los monos" en 1986, material que consolidó su masividad a nivel nacional. Su último trabajo de estudio fue "After Chabón", publicado en 1987. Tras el fallecimiento de Prodan, la discográfica editó el disco póstumo "Fiebre" en el año 1989 con grabaciones inéditas y versiones en vivo.
+La trayectoria del grupo llegó a su fin de manera abrupta el 22 de diciembre de 1987, cuando Luca Prodan fue encontrado sin vida en su casa del barrio de San Telmo a causa de un paro cardíaco derivado de una cirrosis hepática grave. Tras su última presentación en el estadio Los Andes y la posterior muerte de su líder, la banda se disolvió. A partir de esta separación, los miembros restantes formaron dos grupos fundamentales para el rock nacional de las décadas siguientes: Divididos y Las Pelotas. #rocknacional #rocknacionalargentino #rock #sumo #lucaprodan`,
+"Viejas Locas":`Viejas Locas (1989 - 2000 / 2009 - 2018) fue una banda formada en la ciudad de Buenos Aires, originaria de los barrios de Piedrabuena y Villa Lugano, y se erigió como una de las máximas exponentes del movimiento "rock rolinga" o "rock barrial" en Argentina. Liderada por Cristian "Pity" Álvarez en voz y guitarra, su formación clásica y más exitosa se completó con Fabián "Fachi" Crea en bajo, Sergio "Pollo" Toloza en guitarra y Abel Meyer en batería. Su estilo musical estuvo fuertemente influenciado por el rock and roll tradicional, el blues y el sonido característico de The Rolling Stones.
+Su discografía oficial de estudio está compuesta por cuatro álbumes. Debutaron discográficamente con su disco homónimo "Viejas locas" en 1995. Dos años después lanzaron "Hermanos de sangre" en 1997, material que los consolidó en la escena nacional y los llevó a tocar en el Estadio Obras. Cerraron su primera etapa con el lanzamiento de "Especial" en 1999, logrando su mayor éxito comercial. Tras un largo parate y una posterior reunión, editaron su cuarto y último trabajo de estudio, "Contra la pared", en el año 2011.
+El grupo tuvo una primera separación a fines del año 2000 debido a diferencias internas y cansancio, lo que dio origen a proyectos paralelos como Intoxicados y Motor Loco. Tras anunciar su regreso en 2009 con un multitudinario show en el Estadio José Amalfitani (Vélez Sarsfield), el grupo continuó tocando con diversas formaciones que sufrieron constantes cambios y ausencias de sus miembros fundadores. La trayectoria de la banda finalizó de manera abrupta y definitiva en abril de 2018, tras un fallido recital en la provincia de Tucumán en el que Pity Álvarez no se presentó a tiempo, sumado a los graves problemas judiciales y de salud que enfrentó su líder pocos meses después. #rocknacional #rocknacionalargentino #rock #viejaslocas #intoxicados #pityalvarez`
+};
+
+// slides = array of individual slide titles (each cancion/album = one slide)
+const POSTS=[
+{d:"Lun 4/5",h:"10:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE LA MOSCA Y LA SOPA DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Un Poco de Amor Francés: 137.35 millones","El Pibe de los Astilleros: 82.83 millones","Tarea Fina: 81.84 millones","Mi Perro Dinamita: 46.21 millones","Salando las Heridas: 40.30 millones"]},
+{d:"Lun 4/5",h:"18:00",a:"Los Piojos",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE LOS PIOJOS",
+sl:["3er arco: 199.36 millones","Chactuchac: 168.41 millones","Civilización: 178.93 millones","Máquina de sangre: 134.70 millones","Verde paisaje del infierno: 130.61 millones"]},
+{d:"Mar 5/5",h:"10:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE PRESIÓN DE CALLEJEROS",
+sl:["Una Nueva Noche Fría: 120.57 millones","Imposible: 65.04 millones","Si Me Cansé: 18.37 millones","Fantasía y Realidad: 16.77 millones","Ilusión: 16.20 millones"]},
+{d:"Mar 5/5",h:"18:00",a:"La Renga",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE LA RENGA DE MAYOR A PEOR",
+sl:["Despedazado por mil partes: 404.73 millones","La Renga: 147.71 millones","Detonador de Sueños: 147.33 millones","La esquina del infinito: 110.51 millones","Esquivando charcos: 65.64 millones"]},
+{d:"Mié 6/5",h:"10:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CANCIÓN ANIMAL DE SODA STEREO",
+sl:["De Música Ligera: 845.24 millones","Té Para Tres: 207.29 millones","Entre Caníbales: 164.15 millones","Un Millón De Años Luz: 81.39 millones","Canción Animal: 63.90 millones"]},
+{d:"Mié 6/5",h:"18:00",a:"Sumo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE SUMO",
+sl:["No Tan Distintos: 43.37 millones","La Rubia Tarada: 40.03 millones","Mejor No Hablar de Ciertas Cosas: 32.12 millones","Los Viejos Vinagres: 29.36 millones","Estallando Desde el Océano: 22.03 millones"]},
+{d:"Jue 7/5",h:"10:00",a:"Viejas Locas",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE ESPECIAL DE VIEJAS LOCAS",
+sl:["Me Gustas Mucho: 118.16 millones","Todo Sigue Igual: 85.22 millones","Homero: 76.03 millones","¿Qué Vas A Hacer Tan Sola Hoy?: 48.38 millones","Legalícenla: 16.48 millones"]},
+{d:"Jue 7/5",h:"18:00",a:"Intoxicados",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE OTRO DÍA EN EL PLANETA TIERRA DE INTOXICADOS",
+sl:["Nunca quise: 197.23 millones","Fuego: 95.07 millones","Fuiste lo mejor: 43.96 millones","Las cosas que no se tocan: 26.88 millones","Señor Kioskero: 17.29 millones"]},
+{d:"Vie 8/5",h:"10:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE AZUL DE LOS PIOJOS",
+sl:["Desde Lejos No Se Ve: 24.60 millones","Agua: 15.10 millones","El Balneario de los Doctores Crotos: 14.29 millones","Y Qué Más: 7.77 millones","Buenos Tiempos: 6.44 millones"]},
+{d:"Vie 8/5",h:"18:00",a:"La Renga",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE LA RENGA",
+sl:["Balada Del Diablo y La Muerte: 118.97 millones","La Razón Que Te Demora: 74.85 millones","El Revelde: 72.84 millones","El Final Es En Donde Parti: 67.25 millones","Veneno: 58.46 millones"]},
+{d:"Sáb 9/5",h:"10:00",a:"Callejeros",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE CALLEJEROS",
+sl:["Rocanroles Sin Destino: 412.28 millones","Señales: 373.82 millones","Presión: 320.66 millones","Sed: 141.36 millones","Disco Escultura: 55.94 millones"]},
+{d:"Sáb 9/5",h:"18:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE OKTUBRE DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Ji Ji Ji: 79.62 millones","Preso en Mi Ciudad: 39.98 millones","Motor Psico: 34.37 millones","Música para Pastillas: 28.56 millones","Semen-Up: 22.97 millones"]},
+{d:"Dom 10/5",h:"10:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE SIGNOS DE SODA STEREO",
+sl:["Persiana Americana: 587.43 millones","Prófugos: 220.53 millones","Signos: 130.05 millones","El Rito: 64.67 millones","No Existes: 34.57 millones"]},
+{d:"Dom 10/5",h:"18:00",a:"Sumo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE LLEGANDO LOS MONOS DE SUMO",
+sl:["Los Viejos Vinagres: 29.36 millones","Estallando Desde el Océano: 22.03 millones","Heroína: 19.34 millones","El Ojo Blindado: 14.43 millones","Nextweek: 9.25 millones"]},
+{d:"Lun 11/5",h:"10:00",a:"Viejas Locas",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE VIEJAS LOCAS DE MAYOR A PEOR",
+sl:["Especial: 401.84 millones","Viejas Locas: 110.02 millones","Hermanos de Sangre: 72.27 millones","Contra la pared: 54.29 millones"]},
+{d:"Lun 11/5",h:"18:00",a:"Intoxicados",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE EL EXILIO DE LAS ESPECIES (THEND) DE INTOXICADOS",
+sl:["Casi Sin Pensar: 15.45 millones","Pila Pila: 11.71 millones","Noche Con Amigos: 10.82 millones","Un Secreto: 3.09 millones","Del Mar: 2.74 millones"]},
+{d:"Mar 12/5",h:"10:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE 3ER ARCO DE LOS PIOJOS",
+sl:["El Farolito: 80.05 millones","Verano del 92: 43.69 millones","Todo Pasa: 39.90 millones","Muévelo: 15.11 millones","Taxi Boy: 11.90 millones"]},
+{d:"Mar 12/5",h:"18:00",a:"La Renga",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE LA RENGA",
+sl:["Despedazado por mil partes: 404.73 millones","La Renga: 147.71 millones","Detonador de Sueños: 147.33 millones","La esquina del infinito: 110.51 millones","Esquivando charcos: 65.64 millones"]},
+{d:"Mié 13/5",h:"10:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE SEÑALES DE CALLEJEROS",
+sl:["Creo: 152.34 millones","9 de Julio: 112.75 millones","Señales: 30.04 millones","Puede: 18.62 millones","Frente al Rio: 17.84 millones"]},
+{d:"Mié 13/5",h:"18:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CORDERO ATADO DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Yo Caníbal: 59.25 millones","Caña Seca y un Membrillo: 36.39 millones","Etiqueta Negra: 22.50 millones","¡Es Hora de Levantarse Querido! (¿Dormiste Bie...): 13.92 millones","Ladrón de Mi Cerebro: 11.35 millones"]},
+{d:"Jue 14/5",h:"10:00",a:"Soda Stereo",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE SODA STEREO",
+sl:["Canción Animal: 1,569.77 millones","Nada Personal: 1,130.47 millones","Signos: 1,069.98 millones","Soda Stereo: 911.33 millones","Doble Vida: 648.08 millones"]},
+{d:"Jue 14/5",h:"18:00",a:"Sumo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE AFTER CHABÓN DE SUMO",
+sl:["No Tan Distintos: 43.37 millones","Crua Chan: 13.92 millones","Hola Frank: 11.59 millones","Mañana en el Abasto: 11.19 millones","Lo Quiero Ya: 9.88 millones"]},
+{d:"Vie 15/5",h:"10:00",a:"Viejas Locas",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE HERMANOS DE SANGRE DE VIEJAS LOCAS",
+sl:["Aunque A Nadie Ya Le Importe: 19.72 millones","Perra: 15.40 millones","Adrenalina: 7.74 millones","Hermanos De Sangre: 7.15 millones","Difícil De Entender: 7.02 millones"]},
+{d:"Vie 15/5",h:"18:00",a:"Intoxicados",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE INTOXICADOS DE MAYOR A PEOR",
+sl:["Otro Día en el Planeta Tierra: 419.99 millones","No es sólo rock and roll: 297.27 millones","¡¡Buen Día!!: 120.49 millones","El Exilio de Las Especies (Thend): 54.55 millones"]},
+{d:"Sáb 16/5",h:"10:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE VERDE PAISAJE DEL INFIERNO DE LOS PIOJOS",
+sl:["Ruleta: 59.03 millones","Vine Hasta Aquí: 32.15 millones","Luz de Marfil: 8.90 millones","Labios de Seda: 7.08 millones","Morella: 5.92 millones"]},
+{d:"Sáb 16/5",h:"18:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE SED DE CALLEJEROS",
+sl:["Jugando: 33.01 millones","El Nudo: 20.30 millones","Sed: 13.89 millones","Sonando: 13.66 millones","Rompiendo Espejos: 12.50 millones"]},
+{d:"Dom 17/5",h:"10:00",a:"Patricio Rey",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["La Mosca y la Sopa: 460.01 millones","Oktubre: 263.29 millones","Lobo Suelto: 252.09 millones","¡Bang! ¡Bang!... Estás Liquidado: 219.86 millones","Gulp!: 214.83 millones"]},
+{d:"Dom 17/5",h:"18:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE DOBLE VIDA DE SODA STEREO",
+sl:["En La Ciudad De La Furia: 393.85 millones","Corazón Delator: 99.86 millones","Lo Que Sangra (La Cúpula): 64.49 millones","Pic Nic En El 4º B: 33.08 millones","Terapia De Amor Intensiva: 14.97 millones"]},
+{d:"Lun 18/5",h:"10:00",a:"Sumo",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE SUMO DE MAYOR A PEOR",
+sl:["Divididos por la Felicidad: 128.16 millones","After Chabón: 113.94 millones","Llegando los Monos: 110.29 millones","Corpiños en la Madrugada: 18.78 millones","Fiebre: 16.34 millones"]},
+{d:"Lun 18/5",h:"18:00",a:"Viejas Locas",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CONTRA LA PARED DE VIEJAS LOCAS",
+sl:["Perdóname mi amor: 21.57 millones","No me pienso levantar: 10.53 millones","Bailando en el infierno: 4.07 millones","Roca & Giro: 3.07 millones","Ella no me quiere creer: 2.56 millones"]},
+{d:"Mar 19/5",h:"10:00",a:"Intoxicados",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE INTOXICADOS",
+sl:["Nunca quise: 197.23 millones","Esta Saliendo El Sol: 108.07 millones","Fuego: 95.07 millones","No Tengo Ganas: 53.80 millones","Fuiste lo mejor: 43.96 millones"]},
+{d:"Mar 19/5",h:"18:00",a:"Los Piojos",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE LOS PIOJOS DE MAYOR A PEOR",
+sl:["3er arco: 199.36 millones","Civilización: 178.93 millones","Chactuchac: 168.41 millones","Máquina de sangre: 134.70 millones","Verde paisaje del infierno: 130.61 millones","Ay Ay Ay: 128.02 millones","Azul: 82.16 millones"]},
+{d:"Mié 20/5",h:"10:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CALLEJEROS",
+sl:["Creo: 152.34 millones","Una Nueva Noche Fría: 120.57 millones","Prohibido: 113.63 millones","9 de Julio: 112.75 millones","Rocanroles Sin Destino: 85.08 millones"]},
+{d:"Mié 20/5",h:"18:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE LOBO SUELTO DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Un Ángel para Tu Soledad: 124.82 millones","La Hija del Fletero: 55.93 millones","Rock para el Negro Atila: 20.36 millones","Susanita: 12.62 millones","Buenas Noticias: 8.95 millones"]},
+{d:"Jue 21/5",h:"10:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE DYNAMO DE SODA STEREO",
+sl:["Primavera 0: 50.59 millones","Fue: 49.42 millones","Luna Roja: 37.94 millones","En Remolinos: 33.80 millones","Toma la Ruta: 10.90 millones"]},
+{d:"Jue 21/5",h:"18:00",a:"Sumo",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE SUMO",
+sl:["Divididos por la Felicidad: 128.16 millones","After Chabón: 113.94 millones","Llegando los Monos: 110.29 millones","Corpiños en la Madrugada: 18.78 millones","Fiebre: 16.34 millones"]},
+{d:"Vie 22/5",h:"10:00",a:"Viejas Locas",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE VIEJAS LOCAS",
+sl:["Especial: 401.84 millones","Viejas Locas: 110.02 millones","Hermanos de Sangre: 72.27 millones","Contra la pared: 54.29 millones"]},
+{d:"Vie 22/5",h:"18:00",a:"Intoxicados",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE ¡¡BUEN DÍA!! DE INTOXICADOS",
+sl:["Se Fue Al Cielo: 35.91 millones","Quieren Rock: 26.83 millones","Religión: 17.25 millones","Mi Inteligencia Intrapersonal: 12.19 millones","El Rey: 7.89 millones"]},
+{d:"Sáb 23/5",h:"10:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CIVILIZACIÓN DE LOS PIOJOS",
+sl:["Bicho de Ciudad: 87.13 millones","Civilización: 35.17 millones","Pacífico: 27.36 millones","Difícil: 9.12 millones","Manjar: 4.02 millones"]},
+{d:"Sáb 23/5",h:"18:00",a:"Callejeros",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE CALLEJEROS DE MAYOR A PEOR",
+sl:["Rocanroles Sin Destino: 412.28 millones","Señales: 373.82 millones","Presión: 320.66 millones","Sed: 141.36 millones","Disco Escultura: 55.94 millones"]},
+{d:"Dom 24/5",h:"10:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE ¡BANG! ¡BANG!... ESTÁS LIQUIDADO DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Esa Estrella Era Mi Lujo: 97.50 millones","Nuestro Amo Juega al Esclavo: 22.49 millones","Ropa Sucia: 18.90 millones","La Parabellum del Buen Psicópata: 17.97 millones","Nadie Es Perfecto: 16.55 millones"]},
+{d:"Dom 24/5",h:"18:00",a:"Soda Stereo",
+ti:"TOP 5 DE TODOS LOS ÁLBUMES DE SODA STEREO DE MAYOR A PEOR",
+sl:["Canción Animal: 1,569.77 millones","Nada Personal: 1,130.47 millones","Signos: 1,069.98 millones","Soda Stereo: 911.33 millones","Doble Vida: 648.08 millones"]},
+{d:"Lun 25/5",h:"10:00",a:"Sumo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CORPIÑOS EN LA MADRUGADA DE SUMO",
+sl:["Breaking Away: 7.79 millones","Teléfonos / White Trash: 3.91 millones","Mejor No Hablar: 1.43 millones","F'you: 1.20 millones","Quiero Dinero: 0.94 millones"]},
+{d:"Lun 25/5",h:"18:00",a:"Viejas Locas",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE VIEJAS LOCAS",
+sl:["Me Gustas Mucho: 118.16 millones","Todo Sigue Igual: 85.22 millones","Homero: 76.03 millones","¿Qué Vas A Hacer Tan Sola Hoy?: 48.38 millones","Lo Artesanal: 34.15 millones"]},
+{d:"Mar 26/5",h:"10:00",a:"Intoxicados",
+ti:"TOP 5 ÁLBUMES MÁS ESCUCHADOS DE INTOXICADOS",
+sl:["Otro Día en el Planeta Tierra: 419.99 millones","No es sólo rock and roll: 297.27 millones","¡¡Buen Día!!: 120.49 millones","El Exilio de Las Especies (Thend): 54.55 millones"]},
+{d:"Mar 26/5",h:"18:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE MÁQUINA DE SANGRE DE LOS PIOJOS",
+sl:["Como Alí: 62.03 millones","Canción de Cuna: 24.74 millones","Amor de Perros: 18.26 millones","Fantasma: 6.83 millones","Sudestada: 6.82 millones"]},
+{d:"Mié 27/5",h:"10:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE ROCANROLES SIN DESTINO DE CALLEJEROS",
+sl:["Prohibido: 113.63 millones","Rocanroles Sin Destino: 85.08 millones","Tan Perfecto Que Asusta: 52.87 millones","Un Lugar Perfecto: 31.99 millones","Sería una Pena: 27.40 millones"]},
+{d:"Mié 27/5",h:"18:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Un Poco de Amor Francés: 137.35 millones","Un Ángel para Tu Soledad: 124.82 millones","Esa Estrella Era Mi Lujo: 97.50 millones","El Pibe de los Astilleros: 82.83 millones","Tarea Fina: 81.84 millones"]},
+{d:"Jue 28/5",h:"10:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE SUEÑO STEREO DE SODA STEREO",
+sl:["Ella Usó Mi Cabeza Como Un Revólver: 115.51 millones","Zoom: 130.46 millones","Disco Eterno: 46.33 millones","Paseando Por Roma: 34.66 millones","Angel Eléctrico: 29.72 millones"]},
+{d:"Jue 28/5",h:"18:00",a:"Sumo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE DIVIDIDOS POR LA FELICIDAD DE SUMO",
+sl:["La Rubia Tarada: 39.52 millones","Mejor No Hablar de Ciertas Cosas: 30.69 millones","Regtest: 15.52 millones","El Reggae de Paz y Amor: 12.74 millones","Debede: 8.08 millones"]},
+{d:"Vie 29/5",h:"10:00",a:"Viejas Locas",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE VIEJAS LOCAS (ÁLBUM)",
+sl:["Lo Artesanal: 34.15 millones","Nena, Me Gustas Así: 28.18 millones","Balada Para Otra Mujer: 12.36 millones","Intoxicado: 11.35 millones","Sacátelo: 4.25 millones"]},
+{d:"Vie 29/5",h:"18:00",a:"Intoxicados",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE NO ES SÓLO ROCK AND ROLL DE INTOXICADOS",
+sl:["Esta Saliendo El Sol: 108.07 millones","No Tengo Ganas: 53.80 millones","Una Vela: 33.71 millones","Reggae Para Los Amigos: 28.76 millones","De La Guitarra: 18.46 millones"]},
+{d:"Sáb 30/5",h:"10:00",a:"Los Piojos",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE CHACTUCHAC DE LOS PIOJOS",
+sl:["Tan Solo: 127.52 millones","Yira Yira: 12.83 millones","Cruel: 8.10 millones","Chac Tu Chac: 7.10 millones","Los Mocosos: 5.68 millones"]},
+{d:"Sáb 30/5",h:"18:00",a:"Callejeros",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE DISCO ESCULTURA DE CALLEJEROS",
+sl:["Más Allá: 14.90 millones","Siempre un Poco Más: 8.07 millones","El Espejo: 6.05 millones","Guiños: 5.91 millones","Rehén: 5.88 millones"]},
+{d:"Dom 31/5",h:"10:00",a:"Patricio Rey",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE LUZBELITO DE PATRICIO REY Y SUS REDONDITOS DE RICOTA",
+sl:["Juguetes Perdidos: 35.15 millones","Me Matan Limón!: 31.01 millones","Mariposa Pontiac Rock del País: 22.53 millones","Luzbelito y las Sirenas: 19.09 millones","La Dicha No Es una Cosa Alegre: 14.72 millones"]},
+{d:"Dom 31/5",h:"18:00",a:"Soda Stereo",
+ti:"TOP 5 CANCIONES CON MÁS REPRODUCCIONES DE NADA PERSONAL DE SODA STEREO",
+sl:["Cuando Pase El Temblor: 604.41 millones","Nada Personal: 239.62 millones","Juegos De Seducción: 153.22 millones","Danza Rota: 31.89 millones","Estoy Azulado: 30.30 millones"]}
+];
+
+const TABS_ORDER=["Todos","Callejeros","Intoxicados","La Renga","Los Piojos","Patricio Rey","Soda Stereo","Sumo","Viejas Locas"];
+const WEEKS={"S1":["Lun 4/5","Mar 5/5","Mié 6/5","Jue 7/5","Vie 8/5","Sáb 9/5","Dom 10/5"],"S2":["Lun 11/5","Mar 12/5","Mié 13/5","Jue 14/5","Vie 15/5","Sáb 16/5","Dom 17/5"],"S3":["Lun 18/5","Mar 19/5","Mié 20/5","Jue 21/5","Vie 22/5","Sáb 23/5","Dom 24/5"],"S4":["Lun 25/5","Mar 26/5","Mié 27/5","Jue 28/5","Vie 29/5","Sáb 30/5","Dom 31/5"]};
+const WN={"S1":"Semana 1","S2":"Semana 2","S3":"Semana 3","S4":"Semana 4"};
+const SLIDE_COLORS=["red","teal","amber","green","red","teal","amber"];
+
+let st={};try{st=JSON.parse(localStorage.getItem('ttv3')||'{}')}catch(e){}
+let atab="Todos";
+
+function pid(p){return p.d+'|'+p.h+'|'+p.a}
+function sv(){try{localStorage.setItem('ttv3',JSON.stringify(st))}catch(e){}}
+function tog(id){st[id]=!st[id];sv();render()}
+function df(a){if(a==="Todos")return Object.values(st).filter(Boolean).length;return POSTS.filter(p=>p.a===a&&st[pid(p)]).length}
+function tf(a){return a==="Todos"?POSTS.length:POSTS.filter(p=>p.a===a).length}
+function mall(a,v){POSTS.filter(p=>p.a===a).forEach(p=>{st[pid(p)]=v});sv();render()}
+
+function cp(txt,bid){
+  const b=document.getElementById(bid);
+  const flash=()=>{
+    if(!b)return;
+    const o=b.innerHTML;
+    b.innerHTML='✓ COPIADO';
+    b.classList.add('ok');
+    setTimeout(()=>{b.innerHTML=o;b.classList.remove('ok')},1500);
+  };
+  // iOS Safari proven method: contenteditable + select + execCommand
+  const el=document.createElement('div');
+  el.contentEditable='true';
+  el.style.cssText='position:fixed;top:0;left:0;width:10px;height:10px;opacity:0;overflow:hidden;font-size:12px';
+  el.textContent=txt;
+  document.body.appendChild(el);
+  el.focus();
+  const range=document.createRange();
+  range.selectNodeContents(el);
+  const sel=window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  el.setSelectionRange=()=>{};
+  try{
+    const ok=document.execCommand('copy');
+    document.body.removeChild(el);
+    if(ok){flash();return;}
+  }catch(e){}
+  document.body.removeChild(el);
+  // Last resort: modern clipboard API
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(txt).then(flash).catch(flash);
+  } else {flash();}
+}
+
+function toggleSec(el){
+  el.classList.toggle('open');
+  const wrap=el.nextElementSibling;
+  if(wrap)wrap.classList.toggle('open');
+}
+
+function render(){
+  const fl=atab==="Todos"?POSTS:POSTS.filter(p=>p.a===atab);
+  const gd=df("Todos");
+  document.getElementById('gd').textContent=gd;
+  document.getElementById('gbar').style.width=Math.round(gd/90*100)+'%';
+
+  document.getElementById('tabs').innerHTML=TABS_ORDER.map(a=>{
+    const d=df(a),t=tf(a),all=d===t&&t>0;
+    const lbl=a==="Patricio Rey"?"Patricio":a;
+    return `<button class="tab${a===atab?' active':''}" onclick="sw('${a.replace(/'/g,"\\'")}')">
+      ${lbl}<span class="tc${all?' done':''}">${d}/${t}</span></button>`;
+  }).join('');
+
+  const dn=df(atab),tot=tf(atab),pct=tot?Math.round(dn/tot*100):0;
+  let h='';
+
+  if(atab!=="Todos"){
+    const desc=DESC[atab]||'';
+    const did='cpd_'+atab.replace(/\s/g,'_');
+    h+=`<div class="acard">
+      <div class="albl">DESCRIPCION — ${atab.toUpperCase()} — pegar en todos sus posts</div>
+      <div class="atxt">${desc.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>
+      <button class="copybig" id="${did}" onclick="cp(${JSON.stringify(desc)},'${did}')">COPIAR DESCRIPCION COMPLETA</button>
+    </div>
+    <div class="acts">
+      <button class="abtn" onclick="mall('${atab.replace(/'/g,"\\'")}',false)">Desmarcar todos</button>
+      <button class="abtn green" onclick="mall('${atab.replace(/'/g,"\\'")}',true)">Todos programados ✓</button>
+    </div>`;
+  }
+
+  h+=`<div class="prow"><span class="plbl">${dn}/${tot} (${pct}%)</span><div class="pbw"><div class="pbf" style="width:${pct}%"></div></div></div>`;
+
+  for(const[wk,dates]of Object.entries(WEEKS)){
+    const wp=fl.filter(p=>dates.includes(p.d));
+    if(!wp.length)continue;
+    h+=`<div class="wlbl">${WN[wk]}</div>`;
+    for(const p of wp){
+      const id=pid(p);const isDone=!!st[id];
+      const sid=id.replace(/[|\/ ]/g,'_');
+      const desc=DESC[p.a];
+      // IDs
+      const iPort='ip_'+sid;
+      const iPost='ipo_'+sid;
+      const iDesc='id_'+sid;
+
+      // Build slide rows HTML
+      let slideRows='';
+      p.sl.forEach((s,i)=>{
+        const iSlide='is'+i+'_'+sid;
+        const col=SLIDE_COLORS[i]||'red';
+        slideRows+=`<div class="crow">
+          <div class="crow-content">
+            <div class="crow-tag ${col}">SLIDE ${i+1}</div>
+            <div class="crow-txt">${s.replace(/</g,'&lt;')}</div>
+          </div>
+          <button class="cpbtn" id="${iSlide}" onclick="cp(${JSON.stringify(s)},'${iSlide}')">
+            <span class="ico">📋</span>COPIAR
+          </button>
+        </div>`;
+      });
+
+      h+=`<div class="pc${isDone?' done':''}" id="pc_${sid}">
+        <div class="phead" onclick="tog('${id.replace(/'/g,"\\'")}')">
+          <div class="pchk"><svg class="cksvg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="pinfo">
+            <div class="pmeta">${p.d} · ${p.h}${atab==="Todos"?' · <span class="art">'+p.a+'</span>':''}</div>
+            <div class="ptit">${p.ti}</div>
+          </div>
+        </div>
+        <div class="csecs">
+
+          <!-- PORTADA + POST TIKTOK -->
+          <div class="crow" style="border-bottom:1px solid var(--b)">
+            <div class="crow-content">
+              <div class="crow-tag red">TITULO PORTADA + TITULO POST TIKTOK</div>
+              <div class="crow-txt">${p.ti.replace(/</g,'&lt;')}</div>
+            </div>
+            <button class="cpbtn" id="${iPort}" onclick="cp(${JSON.stringify(p.ti)},'${iPort}')">
+              <span class="ico">🖼</span>COPIAR
+            </button>
+          </div>
+
+          <!-- SLIDES SECTION -->
+          <button class="csec-hdr" onclick="toggleSec(this)">
+            <span class="slbl">TITULOS DE CADA SLIDE (${p.sl.length} slides)</span>
+            <span class="sarr">▼</span>
+          </button>
+          <div class="crow-wrap">
+            ${slideRows}
+          </div>
+
+          <!-- DESCRIPCION -->
+          <div class="crow">
+            <div class="crow-content">
+              <div class="crow-tag green">DESCRIPCION DEL POST</div>
+              <div class="crow-txt muted">${desc.substring(0,70).replace(/</g,'&lt;')}…</div>
+            </div>
+            <button class="cpbtn" id="${iDesc}" onclick="cp(${JSON.stringify(desc)},'${iDesc}')">
+              <span class="ico">📝</span>COPIAR
+            </button>
+          </div>
+
+        </div>
+      </div>`;
+    }
+  }
+  document.getElementById('body').innerHTML=h;
+}
+function sw(t){atab=t;render();window.scrollTo(0,0)}
+render();
+</script>
+</body>
+</html>
