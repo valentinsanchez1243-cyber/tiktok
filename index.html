@@ -326,38 +326,32 @@ function df(a){if(a==="Todos")return Object.values(st).filter(Boolean).length;re
 function tf(a){return a==="Todos"?POSTS.length:POSTS.filter(p=>p.a===a).length}
 function mall(a,v){POSTS.filter(p=>p.a===a).forEach(p=>{st[pid(p)]=v});sv();render()}
 
-function cp(txt,bid){
-  const b=document.getElementById(bid);
-  const flash=()=>{
-    if(!b)return;
-    const o=b.innerHTML;
-    b.innerHTML='✓ COPIADO';
+function cp(txt, bid) {
+  const b = document.getElementById(bid);
+  const flash = () => {
+    if (!b) return;
+    const o = b.innerHTML;
+    b.innerHTML = '✓ COPIADO';
     b.classList.add('ok');
-    setTimeout(()=>{b.innerHTML=o;b.classList.remove('ok')},1500);
+    setTimeout(() => { b.innerHTML = o; b.classList.remove('ok'); }, 1500);
   };
-  // iOS Safari proven method: contenteditable + select + execCommand
-  const el=document.createElement('div');
-  el.contentEditable='true';
-  el.style.cssText='position:fixed;top:0;left:0;width:10px;height:10px;opacity:0;overflow:hidden;font-size:12px';
-  el.textContent=txt;
-  document.body.appendChild(el);
-  el.focus();
-  const range=document.createRange();
-  range.selectNodeContents(el);
-  const sel=window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-  el.setSelectionRange=()=>{};
-  try{
-    const ok=document.execCommand('copy');
-    document.body.removeChild(el);
-    if(ok){flash();return;}
-  }catch(e){}
-  document.body.removeChild(el);
-  // Last resort: modern clipboard API
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(txt).then(flash).catch(flash);
-  } else {flash();}
+  
+  // iOS Safari: must use input element selected synchronously on tap
+  const inp = document.createElement('input');
+  inp.value = txt;
+  inp.style.cssText = 'position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0';
+  document.body.appendChild(inp);
+  inp.focus();
+  inp.select();
+  inp.setSelectionRange(0, 99999);
+  document.execCommand('copy');
+  document.body.removeChild(inp);
+  flash();
+  
+  // Modern browsers fallback
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).catch(() => {});
+  }
 }
 
 function toggleSec(el){
@@ -479,5 +473,6 @@ render();
 </script>
 </body>
 </html>
-   
+  
+ 
  
