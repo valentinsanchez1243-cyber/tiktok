@@ -336,21 +336,29 @@ function cp(txt, bid) {
     setTimeout(() => { b.innerHTML = o; b.classList.remove('ok'); }, 1500);
   };
   
-  // iOS Safari: must use input element selected synchronously on tap
-  const inp = document.createElement('input');
-  inp.value = txt;
-  inp.style.cssText = 'position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0';
-  document.body.appendChild(inp);
-  inp.focus();
-  inp.select();
-  inp.setSelectionRange(0, 99999);
-  document.execCommand('copy');
-  document.body.removeChild(inp);
-  flash();
+  // iOS Safari: Use textarea instead of input to preserve newlines for descriptions
+  const textArea = document.createElement('textarea');
+  textArea.value = txt;
+  textArea.style.cssText = 'position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0';
   
-  // Modern browsers fallback
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(txt).catch(() => {});
+  document.body.appendChild(textArea);
+  
+  // Selection sequence specifically for iOS
+  textArea.focus();
+  textArea.select();
+  textArea.setSelectionRange(0, 999999);
+  
+  let success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch (err) {}
+  
+  document.body.removeChild(textArea);
+  
+  if (success) {
+    flash();
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(flash).catch(() => {});
   }
 }
 
